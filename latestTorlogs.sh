@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(tail /var/log/tor/log)"
+tail /var/log/tor/log

@@ -1,2 +1,2 @@
 #!/bin/bash
-$(fusermount3 -u ~/pi/)
+fusermount3 -u ~/pi/

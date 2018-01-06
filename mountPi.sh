@@ -1,2 +1,2 @@
 #!/bin/bash
-$(sshfs samot@raspi:/ ~/pi/ -C)
+sshfs samot@raspi:/ ~/pi/ -C
