@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 # set -x
 
+printf '$XDG_SESSION_TYPE: '
+echo $XDG_SESSION_TYPE
+printf '\n'
+
 printf 'updating arch\n + sudo pacman -Syu \n'
 sudo pacman -Syu
 
