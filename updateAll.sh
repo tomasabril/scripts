@@ -1,8 +1,17 @@
 #!/usr/bin/bash
 # set -x
 
+if ! ping -c 1 archlinux.org &> /dev/null; then
+    echo "No internet? Stopping update"
+    exit 1
+fi
+
+
 printf '$XDG_SESSION_TYPE: '
 echo $XDG_SESSION_TYPE
+printf '\n'
+
+./archnews.py
 printf '\n'
 
 printf 'updating arch\n + sudo pacman -Syu \n'
@@ -35,8 +44,14 @@ fi
 
 case "$(date +%w)" in 
   6|0)
-    printf '\nWeekend, cleaning package cache\n + sudo paccache -r\n'
+    printf '\nWeekend - cleaning package cache, flatpak old files, old systemctl log files\n\n'
+    printf 'paccache'
     sudo paccache -r
+    printf '\nflatpak\n'
+    flatpak uninstall --unused
+    printf '\nlogs\n'
+    sudo journalctl --vacuum-time=14d
+    printf '\nRun sudo pacdiff to review .pacnew files\n'
     ;;
 esac
 
